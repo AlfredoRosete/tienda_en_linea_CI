@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 24-11-2018 a las 23:53:04
+-- Tiempo de generación: 04-12-2018 a las 00:56:05
 -- Versión del servidor: 10.1.36-MariaDB
 -- Versión de PHP: 7.2.10
 
@@ -21,6 +21,53 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `carrito`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `catergoria_paquete`
+--
+
+CREATE TABLE `catergoria_paquete` (
+  `id_cp` int(11) NOT NULL,
+  `titulo_cp` varchar(50) NOT NULL,
+  `descripcion_cp` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `catergoria_paquete`
+--
+
+INSERT INTO `catergoria_paquete` (`id_cp`, `titulo_cp`, `descripcion_cp`) VALUES
+(7, 'Boda', 'Descripcion de la boda'),
+(8, '15 años', 'des');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `detalle_seccion`
+--
+
+CREATE TABLE `detalle_seccion` (
+  `id_ds` int(11) NOT NULL,
+  `id_seccion` int(11) NOT NULL,
+  `tipo_ds` varchar(50) NOT NULL,
+  `elemento` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `detalle_seccion`
+--
+
+INSERT INTO `detalle_seccion` (`id_ds`, `id_seccion`, `tipo_ds`, `elemento`) VALUES
+(8, 4, 'Entrada', 'sopa'),
+(9, 4, 'Entrada', 'arroz'),
+(10, 4, 'Plato_fuete', 'milanesa'),
+(11, 4, 'Plato_fuete', 'Consome'),
+(12, 4, 'postre', 'arroz con leche'),
+(13, 4, 'postre', 'fresas con crema'),
+(14, 5, 'Entrada', '????'),
+(15, 5, 'Entrada', 'p');
 
 -- --------------------------------------------------------
 
@@ -102,6 +149,39 @@ CREATE TABLE `orders` (
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `paquetes`
+--
+
+CREATE TABLE `paquetes` (
+  `id_paquete` int(11) NOT NULL,
+  `nombre_paquete` varchar(50) NOT NULL,
+  `tipo_paquete` varchar(50) NOT NULL,
+  `id_cp` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `paquetes`
+--
+
+INSERT INTO `paquetes` (`id_paquete`, `nombre_paquete`, `tipo_paquete`, `id_cp`) VALUES
+(1, 'Mi boda Feliz', 'Basico', 7);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `paquete_full`
+--
+
+CREATE TABLE `paquete_full` (
+  `id_pqfull` int(11) NOT NULL,
+  `id_paquete` int(11) NOT NULL,
+  `id_seccion` int(11) NOT NULL,
+  `precio` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `product`
 --
 
@@ -125,6 +205,31 @@ INSERT INTO `product` (`id_product`, `codigo_producto`, `name`, `description`, `
 (2, 'p0001', 'Habana', 'descripcoin', 12, '', 26, 12),
 (4, 'p0002', 'vino', 'vino', 250, '', 30, 12),
 (6, '123kans', 'aksd n', 'nosdo', 123, 'as', 12, 123);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `seccion`
+--
+
+CREATE TABLE `seccion` (
+  `id_seccion` int(11) NOT NULL,
+  `nombre_de_seccion` varchar(50) NOT NULL,
+  `tipo_seccion` varchar(50) NOT NULL,
+  `id_cp` int(11) NOT NULL,
+  `nivel_seccion` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `seccion`
+--
+
+INSERT INTO `seccion` (`id_seccion`, `nombre_de_seccion`, `tipo_seccion`, `id_cp`, `nivel_seccion`) VALUES
+(1, '0', '', 0, ''),
+(2, '0', '', 0, ''),
+(3, 'Comida basica para boda', 'Comida', 7, 'Entrada'),
+(4, 'Comida premium para boda', 'Comida', 7, 'Premium'),
+(5, 'Paquete de comida', 'Comida', 7, 'Estandar');
 
 -- --------------------------------------------------------
 
@@ -157,7 +262,10 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `ip_address`, `username`, `password`, `salt`, `email`, `activation_code`, `forgotten_password_code`, `forgotten_password_time`, `remember_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`, `company`, `phone`) VALUES
-(1, '127.0.0.1', 'administrator', '$2a$07$SeBknntpZror9uyftVopmu61qg0ms8Qv1yV6FG.kQOSM.9QhmTo36', '', 'admin@admin.com', '', NULL, NULL, NULL, 1268889823, 1543098986, 1, 'Admin', 'istrator', 'ADMIN', '0');
+(1, '127.0.0.1', 'administrator', '$2a$07$SeBknntpZror9uyftVopmu61qg0ms8Qv1yV6FG.kQOSM.9QhmTo36', '', 'admin@admin.com', '', NULL, NULL, NULL, 1268889823, 1543879508, 1, 'Admin', 'istrator', 'ADMIN', '0'),
+(6, '127.0.0.1', 'emma@gmail.com', '$2y$08$vOFDqzCucWMggQSPJkZwfOZgrMiktT7tL6LHqahQ4wP0CvbN6FB9W', NULL, 'emma@gmail.com', NULL, NULL, NULL, NULL, 1543532029, 1543532554, 1, 'Emmanuel', 'Reyes Rosas', NULL, '+2721975753'),
+(7, '127.0.0.1', 'jose.alfredo.rosete@gmail.com', '$2y$08$1GMe9VaIXW96qTc8d4EC8uU6IqVH8th8Qwlk3lfezwuNWo80EuQSy', NULL, 'jose.alfredo.rosete@gmail.com', NULL, NULL, NULL, NULL, 1543532145, NULL, 1, 'jose Alfredo', 'Rosete Mazahua', 'anskj', '+2721975753'),
+(8, '127.0.0.1', 'juanito@gmail.com', '$2y$08$g3TPGlmnlU3K3z7SrzWXwug97mXCO2T.EFt6pdTVVPV.EXABWMUSK', NULL, 'juanito@gmail.com', NULL, NULL, NULL, NULL, 1543606014, 1543606052, 1, 'Juanito', 'juanito', NULL, '+2721975753');
 
 -- --------------------------------------------------------
 
@@ -177,11 +285,26 @@ CREATE TABLE `users_groups` (
 
 INSERT INTO `users_groups` (`id`, `user_id`, `group_id`) VALUES
 (1, 1, 1),
-(2, 1, 2);
+(2, 1, 2),
+(9, 6, 1),
+(11, 7, 1),
+(12, 8, 1);
 
 --
 -- Índices para tablas volcadas
 --
+
+--
+-- Indices de la tabla `catergoria_paquete`
+--
+ALTER TABLE `catergoria_paquete`
+  ADD PRIMARY KEY (`id_cp`);
+
+--
+-- Indices de la tabla `detalle_seccion`
+--
+ALTER TABLE `detalle_seccion`
+  ADD PRIMARY KEY (`id_ds`);
 
 --
 -- Indices de la tabla `entrada`
@@ -214,10 +337,28 @@ ALTER TABLE `orders`
   ADD PRIMARY KEY (`id_orders`);
 
 --
+-- Indices de la tabla `paquetes`
+--
+ALTER TABLE `paquetes`
+  ADD PRIMARY KEY (`id_paquete`);
+
+--
+-- Indices de la tabla `paquete_full`
+--
+ALTER TABLE `paquete_full`
+  ADD PRIMARY KEY (`id_pqfull`);
+
+--
 -- Indices de la tabla `product`
 --
 ALTER TABLE `product`
   ADD PRIMARY KEY (`id_product`);
+
+--
+-- Indices de la tabla `seccion`
+--
+ALTER TABLE `seccion`
+  ADD PRIMARY KEY (`id_seccion`);
 
 --
 -- Indices de la tabla `users`
@@ -237,6 +378,18 @@ ALTER TABLE `users_groups`
 --
 -- AUTO_INCREMENT de las tablas volcadas
 --
+
+--
+-- AUTO_INCREMENT de la tabla `catergoria_paquete`
+--
+ALTER TABLE `catergoria_paquete`
+  MODIFY `id_cp` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT de la tabla `detalle_seccion`
+--
+ALTER TABLE `detalle_seccion`
+  MODIFY `id_ds` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT de la tabla `entrada`
@@ -266,7 +419,13 @@ ALTER TABLE `login_attempts`
 -- AUTO_INCREMENT de la tabla `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id_orders` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id_orders` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `paquetes`
+--
+ALTER TABLE `paquetes`
+  MODIFY `id_paquete` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `product`
@@ -275,16 +434,22 @@ ALTER TABLE `product`
   MODIFY `id_product` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
+-- AUTO_INCREMENT de la tabla `seccion`
+--
+ALTER TABLE `seccion`
+  MODIFY `id_seccion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `users_groups`
 --
 ALTER TABLE `users_groups`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- Restricciones para tablas volcadas
