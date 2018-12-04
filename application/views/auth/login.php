@@ -18,15 +18,13 @@
 
       </div>
 
-      <div class="form-label-group">
-         <?php echo form_input($identity,'','class="form-control" placeholder="Correo" ' );?>
+    <div class="form-group">
+         <?php echo form_input($identity,'','class="form-control " placeholder="Correo" ' );?>
+    </div>
 
-        <label for="inputEmail">Correo</label>
-      </div>
 
-      <div class="form-label-group">
-    <?php echo form_input($password,'','class="form-control" placeholder="Contraseña" ');?>
-        <label for="inputPassword">Contraseña</label>
+      <div class="form-group">
+    <?php echo form_input($password,'','class="form-control  " placeholder="Contraseña" ');?>
       </div>
 
       <div class="checkbox mb-3">

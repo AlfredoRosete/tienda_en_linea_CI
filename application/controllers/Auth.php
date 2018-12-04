@@ -127,6 +127,10 @@ class Auth extends CI_Controller
 		}
 	}
 
+
+
+
+
 	/**
 	 * Log the user out
 	 */
@@ -516,7 +520,7 @@ class Auth extends CI_Controller
 			// check to see if we are creating the user
 			// redirect them back to the admin page
 			$this->session->set_flashdata('message', $this->ion_auth->messages());
-			redirect("auth", 'refresh');
+			redirect("Admin", 'refresh');
 		}
 		else
 		{
@@ -573,7 +577,10 @@ class Auth extends CI_Controller
 				'value' => $this->form_validation->set_value('password_confirm'),
 			);
 
+			$this->load->view('guest/head');
+			$this->load->view('guest/menu_U');
 			$this->_render_page('auth' . DIRECTORY_SEPARATOR . 'create_user', $this->data);
+			$this->load->view('guest/footer');
 		}
 	}
 	/**

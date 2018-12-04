@@ -1,57 +1,99 @@
-<h1><?php echo lang('create_user_heading');?></h1>
-<p><?php echo lang('create_user_subheading');?></p>
+
+
+
+
+<div class="container">
+  
+
+
+
+
+
+
+<div class="card">
+  <div class="card-body">
+
+    <?php echo form_open("auth/create_user",'class="form-signin"');?>
+
 
 <div id="infoMessage"><?php echo $message;?></div>
 
 <?php echo form_open("auth/create_user");?>
-
-      <p>
-            <?php echo lang('create_user_fname_label', 'first_name');?> <br />
-            <?php echo form_input($first_name);?>
-      </p>
-
-      <p>
-            <?php echo lang('create_user_lname_label', 'last_name');?> <br />
-            <?php echo form_input($last_name);?>
-      </p>
+<div class="text-center mb-4">
+        <img class="mb-4" src="../../assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
+        <u class="blog-header-logo text-dark" href="#">
+          <h1>
+            Registra Usuario
+          </h1>
+        </u>
       
-      <?php
+      <div id="infoMessage"></div>
+
+      <p>Por favor llene los datos correctamente.</p>
+
+
+      </div>
+
+      <div class="form-group">
+        <!-- <input type="text" name="identity" value="" id="identity"  class="form-control" placeholder="Correo"  />-->
+
+          <?php echo form_input($first_name,'','class="form-control "placeholder="Nombre" ');?>
+      </div>
+
+      <div class="form-group">
+
+        <?php echo form_input($last_name,'','class="form-control "  placeholder="Apellidos" ');?>
+      </div>
+
+
+ <?php
       if($identity_column!=='email') {
-          echo '<p>';
-          echo lang('create_user_identity_label', 'identity');
-          echo '<br />';
           echo form_error('identity');
-          echo form_input($identity);
-          echo '</p>';
+          echo form_input($identity,'','class="form-control"');
+          echo '<label for="inputPassword">Contraseña</label>';
       }
       ?>
 
-      <p>
-            <?php echo lang('create_user_company_label', 'company');?> <br />
-            <?php echo form_input($company);?>
-      </p>
+      <div class="form-group">
 
-      <p>
-            <?php echo lang('create_user_email_label', 'email');?> <br />
-            <?php echo form_input($email);?>
-      </p>
+<?php echo form_input($email,'','class="form-control " placeholder="Correo" "');?>
 
-      <p>
-            <?php echo lang('create_user_phone_label', 'phone');?> <br />
-            <?php echo form_input($phone);?>
-      </p>
+</div>
 
-      <p>
-            <?php echo lang('create_user_password_label', 'password');?> <br />
-            <?php echo form_input($password);?>
-      </p>
+      <div class="form-group">
 
-      <p>
-            <?php echo lang('create_user_password_confirm_label', 'password_confirm');?> <br />
-            <?php echo form_input($password_confirm);?>
-      </p>
+<?php echo form_input($phone,'','class="form-control" placeholder="Telefono" ');?>
+
+</div>
+      <div class="form-group">
+
+<?php echo form_input($password,'','class="form-control" placeholder="Contraseña" ');?>
+
+</div>
+      <div class="form-group">
+
+<?php echo form_input($password_confirm,'','class="form-control" placeholder="Confirmar contraseña" ');?>
+
+</div>
+ <p><?php echo form_submit('submit', 'Crear Usuario','class="btn btn-lg btn-primary btn-block"');?></p>
+  </div>
+</div>
 
 
-      <p><?php echo form_submit('submit', lang('create_user_submit_btn'));?></p>
+
+
+
+
+
+
+
+
+</p>
 
 <?php echo form_close();?>
+
+
+</div>
+
+
+
